@@ -1,0 +1,8 @@
+---
+- name: Reloading the Docker service
+  systemd:
+    name: 'docker.service'
+    enabled: yes
+    state: reloaded
+    daemon_reload: yes
+  when: ansible_distribution_major_version|int > 6

@@ -1,0 +1,20 @@
+---
+docker_edition: 'ce' # 'ce' (Community Edition) or 'ee' (Enterprise Edition) for joke
+docker_channel: 'stable'
+docker_package_state: 'latest'
+docker_path: '/data'
+docker_native_cgroupdriver: 'cgroupfs' # cgroupfs or systemd
+docker_icc: 'false'
+docker_ipv6: 'false'
+docker_live_restore: 'true'
+docker_log_driver: 'gelf'
+docker_log_level: 'info'
+docker_syslog_server: '1.1.1.1'
+docker_syslog_port: '12209'
+docker_registry_mirrors: 'http://registry.docker-cn.com'
+docker_userland_proxy: 'false'
+
+# Docker Compose options.
+docker_install_compose: 'true'
+docker_compose_version: "1.22.0"
+docker_compose_path: '/usr/local/bin/docker-compose'

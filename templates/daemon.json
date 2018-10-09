@@ -1,0 +1,10 @@
+{
+  "icc": {{ docker_icc }},
+  "ipv6": {{ docker_ipv6 }},
+  "live-restore": {{ docker_live_restore }},
+  "log-driver": "{{ docker_log_driver }}",
+  "log-level": "{{ docker_log_level }}",
+  "log-opts": { "gelf-address": "udp://{{ docker_syslog_server }}:{{ docker_syslog_port }}" },
+  "registry-mirrors": ["{{ docker_registry_mirrors }}"],
+  "userland-proxy": {{ docker_userland_proxy }}
+}

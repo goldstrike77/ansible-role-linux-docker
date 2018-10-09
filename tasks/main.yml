@@ -1,0 +1,45 @@
+---
+- name: Include OS-specific variables
+  include_vars: '{{ ansible_os_family }}.yml'
+
+- name: Include tasks for specific OS
+  include: '{{ ansible_os_family }}.yml'
+
+- name: Create docker image directory
+  file:
+    path: '{{ docker_path }}/docker'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: 0711
+
+- name: Change the Docker image installation directory
+  lineinfile:
+    path: /lib/systemd/system/docker.service
+    regexp: '^ExecStart=/usr/bin/dockerd'
+    line: 'ExecStart=/usr/bin/dockerd -g {{ docker_path }}/docker'
+  register: systemd_update
+
+- name: Docker configureation
+  template:
+    owner: root
+    group: root
+    mode: 0644
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+  with_items:
+    - { src: 'docker-thinpool.conf', dest: '/etc/systemd/system/docker.service.d/' }
+    - { src: 'daemon.json',          dest: '/etc/docker/' }
+  register: conf_update
+
+- name: Reload the Docker service
+  shell: echo ''
+  notify: 'Reloading the Docker service'
+  when: systemd_update.changed or conf_update.changed
+
+- name: Force the handler to run immediately
+  meta: flush_handlers
+
+- name: Install Docker compose
+  include_tasks: 'compose.yml'
+  when: docker_install_compose
