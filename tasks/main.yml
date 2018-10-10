@@ -5,6 +5,9 @@
 - name: Include tasks for specific OS
   include: '{{ ansible_os_family }}.yml'
 
+- name: Include firewall tasks
+  include: 'firewall.yml'
+
 - name: Create docker image directory
   file:
     path: '{{ docker_path }}/docker'
