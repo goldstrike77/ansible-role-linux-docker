@@ -37,6 +37,9 @@
   notify: 'Reloading the Docker service'
   when: systemd_update.changed or conf_update.changed
 
+- name: Docker maintenance task 
+  include_tasks: 'maintenance.yml'
+
 - name: Force the handler to run immediately
   meta: flush_handlers
 

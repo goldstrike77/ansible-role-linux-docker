@@ -13,6 +13,7 @@ docker_syslog_server: '1.1.1.1'
 docker_syslog_port: '12209'
 docker_registry_mirrors: 'http://registry.docker-cn.com'
 docker_userland_proxy: 'false'
+docker_unused_keep: '24h' # only remove unused containers, images, and networks created before given time
 
 # Docker Compose options.
 docker_install_compose: 'true'

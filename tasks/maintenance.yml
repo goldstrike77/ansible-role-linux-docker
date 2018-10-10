@@ -1,0 +1,8 @@
+---
+- name : Docker maintenance job
+  cron:
+    user: root
+    name: 'Remove docker unused data'
+    minute: "{{ ( inventory_hostname | hash | list | map('int',0,16) | sum ) % 60 }}"
+    hour: "{{ (( inventory_hostname | hash | list | map('int',0,16) | sum ) % 2) + 1 }}"
+    job: '/bin/docker system prune -af --filter "until={{ docker_unused_keep }}" &> /dev/null'
