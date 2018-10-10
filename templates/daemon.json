@@ -7,6 +7,7 @@
   "log-opts": { "gelf-address": "udp://{{ docker_syslog_server }}:{{ docker_syslog_port }}" },
   "registry-mirrors": ["{{ docker_registry_mirrors }}"],
   "metrics-addr": "0.0.0.0:{{ docker_metrics_port }}",
+  "dns": ["{{ docker_dns | join('", "') }}"],
 {% if docker_metrics_port is defined %}
   "experimental": true,
 {% endif %}
