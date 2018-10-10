@@ -1,5 +1,5 @@
 ---
-docker_edition: 'ce' # 'ce' (Community Edition) or 'ee' (Enterprise Edition) for joke
+#docker_edition: 'ce' # 'ce' (Community Edition) or 'ee' (Enterprise Edition) for joke
 docker_channel: 'stable'
 docker_package_state: 'latest'
 docker_path: '/data'
