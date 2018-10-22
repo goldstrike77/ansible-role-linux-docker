@@ -1,5 +1,5 @@
 {
-  "icc": {{ docker_arg.arg.icc }},
+  "icc": {{ docker_arg.icc }},
   "ipv6": {{ docker_arg.ipv6 }},
   "live-restore": {{ docker_arg.live_restore }},
   "log-driver": "{{ docker_arg.log_driver }}",
