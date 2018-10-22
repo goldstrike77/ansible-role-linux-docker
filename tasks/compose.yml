@@ -11,7 +11,7 @@
     state: absent
   when:
     - docker_compose_current_version.stdout is defined
-    - docker_compose_version not in docker_compose_current_version.stdout
+    - docker_compose.version not in docker_compose_current_version.stdout
 
 - name: Install Docker Compose
   get_url:
@@ -20,4 +20,4 @@
     mode: 0755
     timeout: '120'
   when:
-    - docker_compose_current_version.rc == 2 or docker_compose_version not in docker_compose_current_version.stdout
+    - docker_compose_current_version.rc == 2 or docker_compose.version not in docker_compose_current_version.stdout
