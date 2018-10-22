@@ -1,26 +1,34 @@
 ---
+# General parameters #
 #docker_edition: 'ce' # 'ce' (Community Edition) or 'ee' (Enterprise Edition) for joke
 docker_channel: 'stable'
 docker_package_state: 'latest'
-docker_path: '/data'
-docker_native_cgroupdriver: 'cgroupfs' # cgroupfs or systemd
-docker_icc: 'false'
-docker_ipv6: 'false'
-docker_live_restore: 'true'
-docker_log_driver: 'gelf'
-docker_log_level: 'info'
-docker_syslog_server: '1.1.1.1'
-docker_syslog_port: '12209'
-docker_registry_mirrors: 'https://registry.docker-cn.com'
-docker_userland_proxy: 'false'
-docker_metrics_port: '9323'
-docker_prune_interval: 'weekly'
-docker_prune_keep: '24h' # only remove unused containers, images, and networks created before given time
-docker_dns:
-  - '8.8.8.8'
-  - '8.8.4.4'
 
-# Docker Compose options.
-docker_install_compose: 'true'
-docker_compose_version: "1.22.0"
-docker_compose_path: '/usr/local/bin/docker-compose'
+# Docker System Variables #
+docker_arg:
+  path: '/data' # Specify the Docker working directory
+  native_cgroupdriver: 'cgroupfs' # specifies the management of the container's cgroups, cgroupfs or systemd
+  icc: 'false' # Inter-container communication
+  ipv6: 'false' # IPv6 networking
+  live_restore: 'true' # Live restore of docker when containers are still running
+  log_driver: 'gelf' # Default driver for container logs
+  log_level: 'info' # Set the logging level
+  syslog_server: '1.1.1.1' # Syslog server address
+  syslog_port: '12209' # Syslog server port
+  registry_mirrors: 'https://registry.docker-cn.com' # Daemon registry mirrors
+  userland_proxy: 'false' # Userland proxy for loopback traffic
+  prune_interval: 'weekly' # Docker system prune job interval
+  prune_keep: '24h' # Only remove unused containers, images, and networks created before given time
+  dns: # DNS server
+    - '8.8.8.8'
+    - '8.8.4.4'
+
+# Listen port #
+docker_port:
+  metrics_port: '9323' # Prometheus exporter port
+
+# Docker Compose options
+docker_compose:
+  install: 'true'
+  version: "1.22.0"
+  path: '/usr/local/bin/docker-compose'

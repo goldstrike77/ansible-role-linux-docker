@@ -1,13 +1,13 @@
 ---
 - name: Check current docker-compose version
-  command: '{{ docker_compose_path }} --version'
+  command: '{{ docker_compose.path }} --version'
   register: docker_compose_current_version
   changed_when: false
   failed_when: false
 
 - name: Delete existing docker-compose version if different
   file:
-    path: '{{ docker_compose_path }}'
+    path: '{{ docker_compose.path }}'
     state: absent
   when:
     - docker_compose_current_version.stdout is defined
@@ -15,8 +15,8 @@
 
 - name: Install Docker Compose
   get_url:
-    url: 'https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}'
-    dest: '{{ docker_compose_path }}'
+    url: 'https://github.com/docker/compose/releases/download/{{ docker_compose.version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}'
+    dest: '{{ docker_compose.path }}'
     mode: 0755
     timeout: '120'
   when:

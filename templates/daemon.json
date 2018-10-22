@@ -1,15 +1,15 @@
 {
-  "icc": {{ docker_icc }},
-  "ipv6": {{ docker_ipv6 }},
-  "live-restore": {{ docker_live_restore }},
-  "log-driver": "{{ docker_log_driver }}",
-  "log-level": "{{ docker_log_level }}",
-  "log-opts": { "gelf-address": "udp://{{ docker_syslog_server }}:{{ docker_syslog_port }}" },
-  "registry-mirrors": ["{{ docker_registry_mirrors }}"],
-  "metrics-addr": "0.0.0.0:{{ docker_metrics_port }}",
-  "dns": ["{{ docker_dns | join('", "') }}"],
-{% if docker_metrics_port is defined %}
+  "icc": {{ docker_arg.arg.icc }},
+  "ipv6": {{ docker_arg.ipv6 }},
+  "live-restore": {{ docker_arg.live_restore }},
+  "log-driver": "{{ docker_arg.log_driver }}",
+  "log-level": "{{ docker_arg.log_level }}",
+  "log-opts": { "gelf-address": "udp://{{ docker_arg.syslog_server }}:{{ docker_arg.syslog_port }}" },
+  "registry-mirrors": ["{{ docker_arg.registry_mirrors }}"],
+  "metrics-addr": "0.0.0.0:{{ docker_arg.metrics_port }}",
+  "dns": ["{{ docker_arg.dns | join('", "') }}"],
+{% if docker_arg.metrics_port is defined %}
   "experimental": true,
 {% endif %}
-  "userland-proxy": {{ docker_userland_proxy }}
+  "userland-proxy": {{ docker_arg.userland_proxy }}
 }

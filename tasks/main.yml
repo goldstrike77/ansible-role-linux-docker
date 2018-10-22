@@ -10,7 +10,7 @@
 
 - name: Create docker image directory
   file:
-    path: '{{ docker_path }}/docker'
+    path: '{{ docker_arg.path }}/docker'
     state: 'directory'
     owner: 'root'
     group: 'root'
@@ -20,7 +20,7 @@
   lineinfile:
     path: /lib/systemd/system/docker.service
     regexp: '^ExecStart=/usr/bin/dockerd'
-    line: 'ExecStart=/usr/bin/dockerd -g {{ docker_path }}/docker'
+    line: 'ExecStart=/usr/bin/dockerd -g {{ docker_arg.path }}/docker'
   register: systemd_update
 
 - name: Docker configureation
@@ -48,4 +48,4 @@
 
 - name: Install Docker compose
   include_tasks: 'compose.yml'
-  when: docker_install_compose
+  when: docker_compose.install
