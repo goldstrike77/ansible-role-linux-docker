@@ -4,7 +4,7 @@
   "live-restore": {{ docker_arg.live_restore }},
   "log-driver": "{{ docker_arg.log_driver }}",
   "log-level": "{{ docker_arg.log_level }}",
-  "log-opts": { "gelf-address": "udp://{{ docker_arg.syslog_server }}:{{ docker_arg.syslog_port }}" },
+  "log-opts": { "gelf-address": "udp://{{ docker_syslog_server }}:{{ docker_syslog_port }}" },
   "registry-mirrors": ["{{ docker_arg.registry_mirrors }}"],
   "metrics-addr": "0.0.0.0:{{ docker_port.metrics_port }}",
   "dns": ["{{ docker_arg.dns | join('", "') }}"],

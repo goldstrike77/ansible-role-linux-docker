@@ -3,6 +3,8 @@
 #docker_edition: 'ce' # 'ce' (Community Edition) or 'ee' (Enterprise Edition) for joke
 docker_channel: 'stable'
 docker_package_state: 'latest'
+docker_syslog_server: '1.1.1.1' # Syslog server address
+docker_syslog_port: '12209' # Syslog server port
 
 # Docker System Variables #
 docker_arg:
@@ -13,8 +15,6 @@ docker_arg:
   live_restore: 'true' # Live restore of docker when containers are still running
   log_driver: 'gelf' # Default driver for container logs
   log_level: 'info' # Set the logging level
-  syslog_server: '1.1.1.1' # Syslog server address
-  syslog_port: '12209' # Syslog server port
   registry_mirrors: 'https://registry.docker-cn.com' # Daemon registry mirrors
   userland_proxy: 'false' # Userland proxy for loopback traffic
   prune_interval: 'weekly' # Docker system prune job interval
