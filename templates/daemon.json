@@ -6,9 +6,9 @@
   "log-level": "{{ docker_arg.log_level }}",
   "log-opts": { "gelf-address": "udp://{{ docker_arg.syslog_server }}:{{ docker_arg.syslog_port }}" },
   "registry-mirrors": ["{{ docker_arg.registry_mirrors }}"],
-  "metrics-addr": "0.0.0.0:{{ docker_arg.metrics_port }}",
+  "metrics-addr": "0.0.0.0:{{ docker_port.metrics_port }}",
   "dns": ["{{ docker_arg.dns | join('", "') }}"],
-{% if docker_arg.metrics_port is defined %}
+{% if docker_port.metrics_port is defined %}
   "experimental": true,
 {% endif %}
   "userland-proxy": {{ docker_arg.userland_proxy }}
