@@ -3,5 +3,5 @@
   cron:
     user: root
     name: 'Remove docker unused data'
-    special_time: '{{ docker_arg.interval }}'
-    job: '/bin/docker system prune -af --filter "until={{ docker_arg.keep }}" &> /dev/null'
+    special_time: '{{ docker_arg.prune_interval }}'
+    job: '/bin/docker system prune -af --filter "until={{ docker_arg.prune_keep }}" &> /dev/null'
