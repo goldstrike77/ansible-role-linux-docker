@@ -22,3 +22,4 @@
     validate_certs: 'no'
   when:
     - docker_compose_current_version.rc == 2 or docker_compose.version not in docker_compose_current_version.stdout
+  ignore_errors: true
