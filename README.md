@@ -1,7 +1,7 @@
 ansible-role-linux-docker
-=========
+=========================
 
-Do not use in production environment.
+Testing and development purposes only, should not be used in a production environment.
 
 Install and configure docker on linux system.
 
