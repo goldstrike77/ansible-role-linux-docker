@@ -30,5 +30,5 @@ docker_port:
 # Docker Compose options
 docker_compose:
   install: 'true'
-  version: "1.22.0"
+  version: '1.23.2'
   path: '/usr/local/bin/docker-compose'
