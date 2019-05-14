@@ -13,5 +13,5 @@
 {% if docker_port.metrics_port is defined %}
   "experimental": true,
 {% endif %}
-  "userland-proxy": {{ docker_arg.userland_proxy }}
+  "userland-proxy": {{ docker_arg.userland_proxy | bool | to_json }}
 }

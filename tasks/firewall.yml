@@ -1,19 +1,9 @@
 ---
 - name: Ensure Docker prometheus metrics firewall port is allow
   firewalld:
-    port: '{{ item }}'
+    port: '{{ item }}/tcp'
+    zone: 'public'
     permanent: 'true'
+    immediate: 'true'
     state: 'enabled'
-  with_items:
-    - '{{ docker_port.metrics_port }}/tcp'
-  when:
-    - ansible_distribution_major_version|int > 6
-  register: firewall_update
-
-- name: Reload firewalld service
-  service:
-    name: firewalld
-    state: reloaded
-  when:
-    - firewall_update|changed
-    - ansible_distribution_major_version|int > 6
+  with_items: '{{ docker_port.metrics_port }}'
