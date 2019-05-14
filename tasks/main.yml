@@ -35,10 +35,21 @@
     - { src: 'daemon.json',          dest: '/etc/docker/' }
   register: conf_update
 
+- name: Configure kernel parameters
+  sysctl:
+    name: '{{ item.variable }}'
+    value: '{{ item.value }}'
+    state: present
+    reload: yes
+    sysctl_set: yes
+    sysctl_file: /etc/sysctl.d/20-sysctl.conf
+  with_items:
+    - '{{ docker_kernel_parameters }}'
+
 - name: Reload the Docker service
   shell: echo ''
   notify: 'Reloading the Docker service'
-  when: systemd_update.changed or conf_update.changed
+  when: systemd_update is changed or conf_update is changed
 
 - name: Docker maintenance task 
   include_tasks: 'maintenance.yml'
@@ -49,3 +60,7 @@
 - name: Install Docker compose
   include_tasks: 'compose.yml'
   when: docker_compose.install
+
+- name: Registered with HashiCorp Consul
+  include: 'register.yml'
+  when: consul_public_register

@@ -22,4 +22,8 @@
     validate_certs: 'no'
   when:
     - docker_compose_current_version.rc == 2 or docker_compose.version not in docker_compose_current_version.stdout
+  register: docker_compose_status
+  until: docker_compose_status is succeeded
+  retries: 5
+  delay: 5
   ignore_errors: true
