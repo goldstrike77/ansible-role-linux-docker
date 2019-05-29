@@ -7,11 +7,11 @@ docker_package_state: 'latest'
 docker_syslog: false
 docker_syslog_server: '1.1.1.1' # Syslog server address
 docker_syslog_port: '12209' # Syslog server port
+docker_native_cgroupdriver: 'cgroupfs' # specifies the management of the container's cgroups, cgroupfs or systemd
 
 # Docker System Variables #
 docker_arg:
   path: '/data' # Specify the Docker working directory
-  native_cgroupdriver: 'cgroupfs' # specifies the management of the container's cgroups, cgroupfs or systemd
   icc: false # Inter-container communication
   ipv6: false # IPv6 networking
   live_restore: true # Live restore of docker when containers are still running
