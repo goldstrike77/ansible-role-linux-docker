@@ -2,22 +2,23 @@
 # General parameters #
 docker_is_install: false # A boolean value, whether install the Docker.
 docker_edition: 'ce' # 'ce' (Community Edition) or 'ee' (Enterprise Edition) for joke
+docker_version: '18.09.6'
 docker_channel: 'stable'
-docker_package_state: 'latest'
 docker_syslog: false
 docker_syslog_server: '1.1.1.1' # Syslog server address
 docker_syslog_port: '12209' # Syslog server port
-docker_native_cgroupdriver: 'cgroupfs' # specifies the management of the container's cgroups, cgroupfs or systemd
+docker_native_cgroupdriver: 'systemd' # specifies the management of the container's cgroups, cgroupfs or systemd
+docker_path: '/data' # Specify the Docker data folder.
+docker_registry_mirrors: # Registry mirrors.
+  - 'https://registry.docker-cn.com'
 
 # Docker System Variables #
 docker_arg:
-  path: '/data' # Specify the Docker working directory
   icc: false # Inter-container communication
   ipv6: false # IPv6 networking
   live_restore: true # Live restore of docker when containers are still running
   log_driver: 'gelf' # Default driver for container logs
   log_level: 'info' # Set the logging level
-  registry_mirrors: 'https://registry.docker-cn.com' # Daemon registry mirrors
   userland_proxy: false # Userland proxy for loopback traffic
   prune_interval: 'weekly' # Docker system prune job interval
   prune_keep: '24h' # Only remove unused containers, images, and networks created before given time

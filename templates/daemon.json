@@ -1,4 +1,6 @@
 {
+  "exec-opts": ["native.cgroupdriver={{ docker_native_cgroupdriver }}"],
+  "graph": "{{ docker_path }}/docker",
   "icc": {{ docker_arg.icc | bool | to_json }},
   "ipv6": {{ docker_arg.ipv6 | bool | to_json }},
   "live-restore": {{ docker_arg.live_restore | bool | to_json }},
@@ -7,7 +9,7 @@
 {% if docker_syslog %}
   "log-opts": { "gelf-address": "udp://{{ docker_syslog_server | default('1.1.1.1') }}:{{ docker_syslog_port | default('12201') }}" },
 {% endif %}
-  "registry-mirrors": ["{{ docker_arg.registry_mirrors }}"],
+  "registry-mirrors": ["{{ docker_registry_mirrors | join('", "') }}"],
   "metrics-addr": "0.0.0.0:{{ docker_port.metrics_port }}",
   "dns": ["{{ docker_arg.dns | join('", "') }}"],
 {% if docker_port.metrics_port is defined %}

@@ -1,4 +1,7 @@
 ---
+- name: Include OS-specific variables
+  include_vars: '{{ ansible_os_family }}.yml'
+
 - name: Ensure old versions of Docker are not installed
   package:
     name: '{{ item }}'
@@ -14,9 +17,13 @@
     description: '{{ docker_repo_name }} repo'
     file: '{{ docker_repo_name }}'
     baseurl: '{{ docker_repo_url }}'
-    gpgcheck: no
+    gpgcheck: 'no'
+    timeout: '60'
 
 - name: Install the Docker packages
   yum:
     name: '{{ docker_package }}'
-    state: '{{ docker_package_state }}'
+    state: 'present'
+    validate_certs: 'no'
+    disable_gpg_check: 'yes'
+  register: soft_update

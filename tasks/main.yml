@@ -1,7 +1,4 @@
 ---
-- name: Include OS-specific variables
-  include_vars: '{{ ansible_os_family }}.yml'
-
 - name: Include tasks for specific OS
   include: '{{ ansible_os_family }}.yml'
 
@@ -10,18 +7,11 @@
 
 - name: Create docker image directory
   file:
-    path: '{{ docker_arg.path }}/docker'
+    path: '{{ docker_path }}/docker'
     state: 'directory'
     owner: 'root'
     group: 'root'
     mode: 0711
-
-- name: Change the Docker image installation directory
-  lineinfile:
-    path: /lib/systemd/system/docker.service
-    regexp: '^ExecStart=/usr/bin/dockerd'
-    line: 'ExecStart=/usr/bin/dockerd -g {{ docker_arg.path }}/docker'
-  register: systemd_update
 
 - name: Docker configureation
   template:
@@ -31,8 +21,7 @@
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
   with_items:
-    - { src: 'docker-thinpool.conf', dest: '/etc/systemd/system/docker.service.d/' }
-    - { src: 'daemon.json',          dest: '/etc/docker/' }
+    - { src: 'daemon.json', dest: '/etc/docker/' }
   register: conf_update
 
 - name: Configure kernel parameters
@@ -49,16 +38,16 @@
 - name: Reload the Docker service
   shell: echo ''
   notify: 'Reloading the Docker service'
-  when: systemd_update is changed or conf_update is changed
+  when: conf_update is changed or soft_update is changed
 
 - name: Docker maintenance task 
-  include_tasks: 'maintenance.yml'
+  include: 'maintenance.yml'
 
 - name: Force the handler to run immediately
   meta: flush_handlers
 
 - name: Install Docker compose
-  include_tasks: 'compose.yml'
+  include: 'compose.yml'
   when: docker_compose.install
 
 - name: Registered with HashiCorp Consul
