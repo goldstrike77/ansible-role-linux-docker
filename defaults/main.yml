@@ -20,11 +20,12 @@ docker_arg:
   log_driver: 'gelf' # Default driver for container logs
   log_level: 'info' # Set the logging level
   userland_proxy: false # Userland proxy for loopback traffic
-  prune_interval: 'weekly' # Docker system prune job interval
-  prune_keep: '24h' # Only remove unused containers, images, and networks created before given time
+  prune_interval: 'monthly' # Docker system prune job interval
+  prune_keep: '720h' # Only remove unused containers, images, and networks created before given time
   dns: # DNS server
+    - '223.5.5.5'
+    - '223.6.6.6'
     - '8.8.8.8'
-    - '8.8.4.4'
 
 # Listen port #
 docker_port:
