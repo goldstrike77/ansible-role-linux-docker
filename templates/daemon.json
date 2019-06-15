@@ -6,8 +6,8 @@
   "live-restore": {{ docker_arg.live_restore | bool | to_json }},
   "log-driver": "{{ docker_arg.log_driver }}",
   "log-level": "{{ docker_arg.log_level }}",
-{% if docker_syslog %}
-  "log-opts": { "gelf-address": "udp://{{ docker_syslog_server | default('1.1.1.1') }}:{{ docker_syslog_port | default('12201') }}" },
+{% if syslog %}
+  "log-opts": { "gelf-address": "{{ syslog_protocol | lower }}://{{ syslog_server | list | random }}:{{ syslog_port }}" },
 {% endif %}
   "registry-mirrors": ["{{ docker_registry_mirrors | join('", "') }}"],
   "metrics-addr": "0.0.0.0:{{ docker_port.metrics_port }}",
