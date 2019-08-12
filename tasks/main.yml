@@ -5,6 +5,16 @@
 - name: Include firewall tasks
   include: 'firewall.yml'
 
+- name: Install requirement python package
+  pip:
+    name: '{{ docker_python_dependent_packages }}'
+    state: 'forcereinstall'
+    extra_args: '-i {{ docker_pypi_url }}'
+  register: docker_python_status
+  until: docker_python_status is succeeded
+  retries: 5
+  delay: 5
+
 - name: Create docker image directory
   file:
     path: '{{ docker_path }}/docker'
@@ -48,8 +58,10 @@
 
 - name: Install Docker compose
   include: 'compose.yml'
-  when: docker_compose.install
+  when: docker_compose.install | bool
 
 - name: Registered with HashiCorp Consul
   include: 'register.yml'
-  when: consul_public_register
+  when:
+    - exporter_is_install | bool
+    -  consul_public_register | bool
