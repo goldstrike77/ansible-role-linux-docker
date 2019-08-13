@@ -7,7 +7,8 @@ docker_channel: 'stable'
 docker_native_cgroupdriver: 'systemd' # specifies the management of the container's cgroups, cgroupfs or systemd
 docker_path: '/data' # Specify the Docker data folder.
 docker_registry_mirrors: # Registry mirrors.
-  - 'https://registry.docker-cn.com'
+  - 'https://dockerhub.azk8s.cn'
+  - 'https://reg-mirror.qiniu.com'
 
 # Service Mesh #
 environments: 'SIT' # Define the service environment.
