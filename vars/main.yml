@@ -3,7 +3,7 @@ docker_kernel_parameters:
   - { variable: 'net.ipv4.ip_forward', value: '1' }
 
 docker_python_dependent_packages:
-  - 'pip'
   - 'docker'
+  - 'pip'
 
 docker_pypi_url: 'https://mirrors.aliyun.com/pypi/simple/'

@@ -8,7 +8,6 @@
 - name: Install requirement python package
   pip:
     name: '{{ docker_python_dependent_packages }}'
-    state: 'forcereinstall'
     extra_args: '-i {{ docker_pypi_url }}'
   register: docker_python_status
   until: docker_python_status is succeeded
