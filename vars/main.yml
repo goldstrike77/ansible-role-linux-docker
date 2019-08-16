@@ -7,3 +7,13 @@ docker_python_dependent_packages:
   - 'pip'
 
 docker_pypi_url: 'https://mirrors.aliyun.com/pypi/simple/'
+
+docker_noproxy_address: # Reserved IP addresses
+  - '10.0.0.0/8' # Private network
+  - '100.64.0.0/10' # Carrier-grade NAT
+  - '127.0.0.0/8' # Loopback addresses
+  - '169.254.0.0/16' # Link-local addresses
+  - '172.16.0.0/12' # Private network
+  - '192.0.0.0/24' # Private network
+  - '192.168.0.0/16' # Private network
+  - '198.18.0.0/15' # Private network

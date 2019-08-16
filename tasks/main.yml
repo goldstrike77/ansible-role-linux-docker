@@ -24,12 +24,12 @@
 
 - name: Docker configureation
   template:
-    owner: root
-    group: root
-    mode: 0644
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
-  with_items:
+  loop:
     - { src: 'daemon.json', dest: '/etc/docker/' }
   register: conf_update
 
@@ -37,17 +37,42 @@
   sysctl:
     name: '{{ item.variable }}'
     value: '{{ item.value }}'
-    state: present
-    reload: yes
-    sysctl_set: yes
+    state: 'present'
+    reload: 'yes'
+    sysctl_set: 'yes'
     sysctl_file: /etc/sysctl.d/20-sysctl.conf
-  with_items:
-    - '{{ docker_kernel_parameters }}'
+  loop: '{{ docker_kernel_parameters }}'
+
+- name: Configure proxy variables
+  lineinfile:
+    dest: '/lib/systemd/system/docker.service'
+    state: 'present'
+    insertafter: '\[Service\]'
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+  loop:
+    - { regexp: '^Environment="HTTP_PROXY',  line: 'Environment="HTTP_PROXY={{ docker_proxy_server }}/"' }
+    - { regexp: '^Environment="HTTPS_PROXY', line: 'Environment="HTTPS_PROXY={{ docker_proxy_server }}/"' }
+    - { regexp: '^Environment="NO_PROXY',    line: 'Environment="NO_PROXY=localhost,{{ docker_noproxy_address | list | join(",") }}"' }
+  register: proxy_update
+  when: docker_proxy_server is defined
+
+- name: Configure proxy variables
+  lineinfile:
+    dest: '/lib/systemd/system/docker.service'
+    state: 'absent'
+    regexp: '{{ item.regexp }}'
+  loop:
+    - { regexp: '^Environment="HTTP_PROXY' }
+    - { regexp: '^Environment="HTTPS_PROXY' }
+    - { regexp: '^Environment="NO_PROXY' }
+  register: noproxy_update
+  when: docker_proxy_server is not defined
 
 - name: Reload the Docker service
   shell: echo ''
   notify: 'Reloading the Docker service'
-  when: conf_update is changed or soft_update is changed
+  when: conf_update is changed or soft_update is changed or proxy_update is changed or noproxy_update is changed
 
 - name: Docker maintenance task 
   include: 'maintenance.yml'
