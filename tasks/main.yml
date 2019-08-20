@@ -5,15 +5,6 @@
 - name: Include firewall tasks
   include: 'firewall.yml'
 
-- name: Install requirement python package
-  pip:
-    name: '{{ docker_python_dependent_packages }}'
-    extra_args: '-i {{ docker_pypi_url }}'
-  register: docker_python_status
-  until: docker_python_status is succeeded
-  retries: 5
-  delay: 5
-
 - name: Create docker image directory
   file:
     path: '{{ docker_path }}/docker'
