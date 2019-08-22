@@ -6,6 +6,7 @@ docker_version: '18.09.8'
 docker_channel: 'stable'
 docker_native_cgroupdriver: 'systemd' # specifies the management of the container's cgroups, cgroupfs or systemd
 docker_path: '/data' # Specify the Docker data folder.
+docker_selinux: false # SELinux security policy.
 docker_registry_mirrors: # Registry mirrors.
   - 'http://dockerhub.azk8s.cn'
   - 'http://reg-mirror.qiniu.com'

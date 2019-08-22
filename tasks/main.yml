@@ -5,13 +5,16 @@
 - name: Include firewall tasks
   include: 'firewall.yml'
 
+- name: Straight to getenforce selinux status
+  include: 'selinux.yml'
+
 - name: Create docker image directory
   file:
     path: '{{ docker_path }}/docker'
     state: 'directory'
     owner: 'root'
     group: 'root'
-    mode: 0711
+    mode: '0711'
 
 - name: Docker configureation
   template:
@@ -31,7 +34,7 @@
     state: 'present'
     reload: 'yes'
     sysctl_set: 'yes'
-    sysctl_file: /etc/sysctl.d/20-sysctl.conf
+    sysctl_file: '/etc/sysctl.d/20-sysctl.conf'
   loop: '{{ docker_kernel_parameters }}'
 
 - name: Configure proxy variables

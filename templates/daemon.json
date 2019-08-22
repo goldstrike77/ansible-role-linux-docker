@@ -1,11 +1,12 @@
 {
   "exec-opts": ["native.cgroupdriver={{ docker_native_cgroupdriver }}"],
-  "graph": "{{ docker_path }}/docker",
+  "data-root": "{{ docker_path }}/docker",
   "icc": {{ docker_arg.icc | bool | to_json }},
   "ipv6": {{ docker_arg.ipv6 | bool | to_json }},
   "live-restore": {{ docker_arg.live_restore | bool | to_json }},
   "log-driver": "{{ docker_arg.log_driver }}",
   "log-level": "{{ docker_arg.log_level }}",
+  "selinux-enabled": {{ docker_selinux | bool | to_json }},
 {% if syslog %}
   "log-opts": { "gelf-address": "{{ syslog_protocol | lower }}://{{ syslog_server | list | random(seed=inventory_hostname) }}:{{ syslog_port }}" },
 {% endif %}
