@@ -1,8 +1,11 @@
 ---
 - name: Reloading the Docker service
   systemd:
-    name: 'docker.service'
+    name: '{{ item }}.service'
     enabled: 'yes'
     state: 'restarted'
     daemon_reload: 'yes'
+  loop:
+    - 'containerd'
+    - 'docker'
   when: ansible_distribution_major_version|int > 6

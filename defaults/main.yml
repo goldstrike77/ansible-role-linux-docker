@@ -42,6 +42,9 @@ docker_arg:
     - '223.5.5.5'
     - '223.6.6.6'
     - '8.8.8.8'
+  storage_driver: 'overlay2' # Storage driver to use
+  storage_opts: # Options per storage driver
+    overlay2_override_kernel_check: true
 
 # Listen port #
 docker_port:

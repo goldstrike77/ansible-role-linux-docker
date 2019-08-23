@@ -13,6 +13,10 @@
   "registry-mirrors": ["{{ docker_registry_mirrors | join('", "') }}"],
   "metrics-addr": "0.0.0.0:{{ docker_port.metrics_port }}",
   "dns": ["{{ docker_arg.dns | join('", "') }}"],
+  "storage-driver": "{{ docker_arg.storage_driver }}",
+  "storage-opts": [
+    "overlay2.override_kernel_check={{ docker_arg.storage_opts.overlay2_override_kernel_check | bool | to_json }}"
+  ],
 {% if exporter_is_install %}
   "experimental": true,
 {% endif %}
