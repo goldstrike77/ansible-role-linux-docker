@@ -17,7 +17,7 @@
   get_url:
     url: 'http://github.com/docker/compose/releases/download/{{ docker_compose.version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}'
     dest: '{{ docker_compose.path }}'
-    mode: 0755
+    mode: '0755'
     timeout: '120'
     validate_certs: 'no'
   when:
