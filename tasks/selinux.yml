@@ -1,4 +1,8 @@
 ---
+- name: Set docker_selinux to false for default
+  set_fact:
+    docker_selinux: '{{ false }}'
+
 - name: Get getenforce binary
   stat:
     path: '/usr/sbin/getenforce'
@@ -16,3 +20,12 @@
   set_fact:
     docker_selinux: '{{ true }}'
   when: 'getenforce_bin.stat.exists and ("Enforcing" in sestatus.stdout or "Permissive" in sestatus.stdout)'
+
+- name: Allow php-fpm to listen on service port
+  seport:
+    ports: '{{ docker_port.metrics_port }}'
+    proto: 'tcp'
+    setype: 'http_port_t'
+    state: 'present'
+  when:
+    - docker_selinux | bool

@@ -6,3 +6,5 @@ docker_package:
   - 'containerd.io'
   - 'docker-{{ docker_edition }}-{{ docker_version }}*'
   - 'docker-{{ docker_edition }}-cli-{{ docker_version }}*'
+  - 'libselinux-utils'
+  - 'policycoreutils-python'
