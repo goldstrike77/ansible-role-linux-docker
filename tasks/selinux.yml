@@ -21,7 +21,7 @@
     docker_selinux: '{{ true }}'
   when: 'getenforce_bin.stat.exists and ("Enforcing" in sestatus.stdout or "Permissive" in sestatus.stdout)'
 
-- name: Allow php-fpm to listen on service port
+- name: Allow docker to listen on service port
   seport:
     ports: '{{ docker_port.metrics_port }}'
     proto: 'tcp'
