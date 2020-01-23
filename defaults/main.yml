@@ -1,15 +1,22 @@
 ---
 # General parameters #
 docker_is_install: false # A boolean value, whether install the Docker.
-docker_edition: 'ce' # 'ce' (Community Edition) or 'ee' (Enterprise Edition) for joke
-docker_version: '18.09.8'
-docker_channel: 'stable'
-docker_native_cgroupdriver: 'systemd' # specifies the management of the container's cgroups, cgroupfs or systemd
+docker_edition: 'ce' # Specify the Docker edition.
+docker_version: '18.09.9' # Specify the Docker version.
+docker_channel: 'stable' # Define Docker distribution.
+docker_native_cgroupdriver: 'systemd' # Specifies the management of the container's cgroups, cgroupfs or systemd.
 docker_path: '/data' # Specify the Docker data folder.
-docker_registry_mirrors: # Registry mirrors.
-  - 'http://dockerhub.azk8s.cn'
-  - 'http://reg-mirror.qiniu.com'
+#docker_registry_mirrors: # Registry mirrors.
+#  - 'http://dockerhub.azk8s.cn'
+#  - 'http://reg-mirror.qiniu.com'
 #docker_proxy_server: 'http://1.1.1.1:3142' # Proxy server
+#docker_dns: # DNS server
+#  - '223.5.5.5'
+#  - '119.29.29.29'
+#  - '8.8.8.8'
+#docker_insecure_registries: # Configures Docker to entirely disregard security for registry.
+#  - 'https://gcr.azk8s.cn'
+#  - 'https://sharedprdpaasacr0.azurecr.cn'
 
 # Syslog parameters #
 syslog: false # A boolean value,  Enable or Disable send console and access log to remote Syslog server.
@@ -20,20 +27,15 @@ syslog_server: # List of syslog server list.
 
 # Docker System Variables #
 docker_arg:
-  icc: false # Inter-container communication
-  ipv6: false # IPv6 networking
-  live_restore: true # Live restore of docker when containers are still running
-  log_driver: 'gelf' # Default driver for container logs
-  log_level: 'info' # Set the logging level
-  userland_proxy: false # Userland proxy for loopback traffic
-  prune_interval: 'monthly' # Docker system prune job interval
-  prune_keep: '720h' # Only remove unused containers, images, and networks created before given time
-  dns: # DNS server
-    - '223.5.5.5'
-    - '223.6.6.6'
-    - '8.8.8.8'
-  storage_driver: 'overlay2' # Storage driver to use
-  storage_opts: # Options per storage driver
+  icc: false # Enable or disable inter-container communication.
+  ipv6: false # Whether use IPv6 in Docker containers or swarm service.
+  live_restore: true # Live restore of docker when containers are still running.
+  log_level: 'info' # Set the logging level.
+  userland_proxy: false # Userland proxy for loopback traffic.
+  prune_interval: 'monthly' # Docker system prune job interval.
+  prune_keep: '720h' # Only remove unused containers, images, and networks created before given time.
+  storage_driver: 'overlay2' # Storage driver to use.
+  storage_opts: # Options per storage driver.
     overlay2_override_kernel_check: true
 
 # Listen port #
@@ -43,7 +45,7 @@ docker_port:
 # Compose parameters #
 docker_compose:
   install: true
-  version: '1.24.1'
+  version: '1.25.2'
   path: '/usr/local/bin/docker-compose'
 
 # Service Mesh #
