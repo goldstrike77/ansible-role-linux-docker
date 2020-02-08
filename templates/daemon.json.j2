@@ -27,7 +27,7 @@
 {% endif %}
   "metrics-addr": "0.0.0.0:{{ docker_port.metrics_port }}",
 {% if docker_dns is defined %}
-  "dns": ["{{ docker_arg.dns | join('", "') }}"],
+  "dns": ["{{ docker_dns | join('", "') }}"],
 {% endif %}
   "storage-driver": "{{ docker_arg.storage_driver }}",
   "storage-opts": [
