@@ -144,7 +144,7 @@ You can also use the group_vars or the host_vars files for setting the variables
       metrics_port: '9323'
     docker_compose:
       install: true
-      version: '1.25.2'
+      version: '1.25.4'
       path: '/usr/local/bin/docker-compose'
     environments: 'Development'
     tags:

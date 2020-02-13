@@ -45,7 +45,7 @@ docker_port:
 # Compose parameters #
 docker_compose:
   install: true
-  version: '1.25.2'
+  version: '1.25.4'
   path: '/usr/local/bin/docker-compose'
 
 # Service Mesh #
