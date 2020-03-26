@@ -2,7 +2,7 @@
 # General parameters #
 docker_is_install: false # A boolean value, whether install the Docker.
 docker_edition: 'ce' # Specify the Docker edition.
-docker_version: '18.09.9' # Specify the Docker version.
+docker_version: '19.03.8' # Specify the Docker version.
 docker_channel: 'stable' # Define Docker distribution.
 docker_native_cgroupdriver: 'systemd' # Specifies the management of the container's cgroups, cgroupfs or systemd.
 docker_path: '/data' # Specify the Docker data folder.

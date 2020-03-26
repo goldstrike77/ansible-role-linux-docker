@@ -96,7 +96,7 @@ There are no dependencies on other roles.
 ### Hosts inventory file
 See tests/inventory for an example.
 
-    node01 ansible_host='192.168.1.10' docker_version='18.09.9'
+    node01 ansible_host='192.168.1.10' docker_version='19.03.8'
 
 ### Vars in role configuration
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
@@ -104,13 +104,13 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: all
       roles:
          - role: ansible-role-linux-docker
-           docker_version: '18.09.9'
+           docker_version: '19.03.8'
 
 ### Combination of group vars and playbook
 You can also use the group_vars or the host_vars files for setting the variables needed for this role. File you should change: group_vars/all or host_vars/`group_name`
 
     docker_edition: 'ce'
-    docker_version: '18.09.9'
+    docker_version: '19.03.8'
     docker_channel: 'stable'
     docker_native_cgroupdriver: 'systemd'
     docker_path: '/data'
