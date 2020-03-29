@@ -8,6 +8,16 @@
 - name: Straight to getenforce selinux status
   include: 'selinux.yml'
 
+- name: Install requirement python package
+  pip:
+    name: '{{ docker_python_dependent_packages }}'
+    state: 'forcereinstall'
+    extra_args: '--ignore-installed -i {{ docker_pypi_url }}'
+  register: docker_python_status
+  until: docker_python_status is succeeded
+  retries: 5
+  delay: 5
+
 - name: Create docker image directory
   file:
     path: '{{ docker_path }}/docker'
