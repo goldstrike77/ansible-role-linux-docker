@@ -13,6 +13,7 @@ docker_noproxy_address: # Reserved IP addresses
   - '198.18.0.0/15' # Private network
 
 docker_python_dependent_packages:
+  - 'pip'
   - 'docker'
 
 docker_pypi_url: 'https://mirrors.aliyun.com/pypi/simple/'
