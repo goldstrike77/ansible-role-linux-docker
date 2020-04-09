@@ -15,8 +15,15 @@ docker_path: '/data' # Specify the Docker data folder.
 #  - '119.29.29.29'
 #  - '8.8.8.8'
 #docker_insecure_registries: # Configures Docker to entirely disregard security for registry.
-#  - 'https://gcr.azk8s.cn'
 #  - 'https://sharedprdpaasacr0.azurecr.cn'
+#  - 'https://docker.mirrors.ustc.edu.cn'
+#  - 'https://dockerhub.azk8s.cn'
+#  - 'https://gcr.azk8s.cn'
+#  - 'https://hub-mirror.c.163.com'
+#  - 'https://quay.azk8s.cn'
+#  - 'https://quay.mirrors.ustc.edu.cn'
+#  - 'https://quay-mirror.qiniu.com'
+#  - 'https://registry.aliyuncs.com'
 
 # Syslog parameters #
 syslog: false # A boolean value,  Enable or Disable send console and access log to remote Syslog server.
