@@ -89,7 +89,8 @@ There are some variables in defaults/main.yml which can (Or needs to) be overrid
 There are some variables in vars/main.yml:
 
 ## Dependencies
-There are no dependencies on other roles.
+- Ansible versions >= 2.8
+- Python >= 2.7.5
 
 ## Example
 
