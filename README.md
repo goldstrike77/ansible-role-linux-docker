@@ -49,6 +49,7 @@ There are some variables in defaults/main.yml which can (Or needs to) be overrid
 * `docker_channel`: Define Docker distribution.
 * `docker_native_cgroupdriver`: Specifies the management of the container's cgroups, cgroupfs or systemd.
 * `docker_path`: Specify the Docker data folder.
+* `docker_bip`: Specify network bridge IP.
 * `docker_registry_mirrors`: Registry mirrors.
 * `docker_proxy_server`: Proxy server.
 * `docker_dns`: DNS server.
@@ -62,11 +63,9 @@ There are some variables in defaults/main.yml which can (Or needs to) be overrid
 
 
 ##### Docker System Variables
-* `docker_arg.bip`: Specify network bridge IP.
 * `docker_arg.max_concurrent_downloads`: Set the max concurrent downloads for each pull.
 * `docker_arg.max_concurrent_uploads`: Set the max concurrent uploads for each push.
 * `docker_arg.icc`: Enable or disable inter-container communication.
-* `docker_arg.ipv6`: Whether use IPv6 in Docker containers or swarm service.
 * `docker_arg.live_restore`: Live restore of docker when containers are still running.
 * `docker_arg.log_level`: Set the logging level.
 * `docker_arg.userland_proxy`: Userland proxy for loopback traffic.
@@ -118,6 +117,7 @@ You can also use the group_vars or the host_vars files for setting the variables
     docker_channel: 'stable'
     docker_native_cgroupdriver: 'systemd'
     docker_path: '/data'
+    docker_bip: '172.17.0.1/16'
     docker_registry_mirrors:
       - 'http://dockerhub.azk8s.cn'
       - 'http://reg-mirror.qiniu.com'
@@ -134,11 +134,9 @@ You can also use the group_vars or the host_vars files for setting the variables
     syslog_server:
       - '127.0.0.1'
     docker_arg:
-      bip: '172.17.0.1/16'
       max_concurrent_downloads: '3'
       max_concurrent_uploads: '5'
       icc: false
-      ipv6: false
       live_restore: true
       log_level: 'info'
       userland_proxy: false

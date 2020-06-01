@@ -2,13 +2,13 @@
 {% if docker_insecure_registries is defined %}
   "insecure-registries": ["{{ docker_insecure_registries | join('", "') }}"],
 {% endif %}
-  "bip": "{{ docker_arg.bip | default('172.17.0.1/16') }}",
+  "bip": "{{ docker_bip | default('172.17.0.1/16') }}",
   "exec-opts": ["native.cgroupdriver={{ docker_native_cgroupdriver }}"],
   "data-root": "{{ docker_path }}/docker",
   "max-concurrent-downloads": {{ docker_arg.max_concurrent_downloads | default('3') }},
   "max-concurrent-uploads": {{ docker_arg.max_concurrent_uploads | default('5') }},
   "icc": {{ docker_arg.icc | bool | to_json }},
-  "ipv6": {{ docker_arg.ipv6 | bool | to_json }},
+  "ipv6": {% if ansible_default_ipv6 | length > 0 %}true{% else %}false{% endif %},
   "live-restore": {{ docker_arg.live_restore | bool | to_json }},
   "oom-score-adjust": -1000,
   "log-level": "{{ docker_arg.log_level }}",

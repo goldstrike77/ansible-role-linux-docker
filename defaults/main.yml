@@ -6,6 +6,7 @@ docker_version: '19.03.8' # Specify the Docker version.
 docker_channel: 'stable' # Define Docker distribution.
 docker_native_cgroupdriver: 'systemd' # Specifies the management of the container's cgroups, cgroupfs or systemd.
 docker_path: '/data' # Specify the Docker data folder.
+docker_bip: '172.17.0.1/16' # Specify network bridge IP.
 #docker_registry_mirrors: # Registry mirrors.
 #  - 'http://dockerhub.azk8s.cn'
 #  - 'http://reg-mirror.qiniu.com'
@@ -33,11 +34,9 @@ syslog_server: # List of syslog server list.
 
 # Docker System Variables #
 docker_arg:
-  bip: '172.17.0.1/16' # Specify network bridge IP.
   max_concurrent_downloads: '3' # Set the max concurrent downloads for each pull.
   max_concurrent_uploads: '5' # Set the max concurrent uploads for each push.
   icc: false # Enable or disable inter-container communication.
-  ipv6: false # Whether use IPv6 in Docker containers or swarm service.
   live_restore: true # Live restore of docker when containers are still running.
   log_level: 'info' # Set the logging level.
   userland_proxy: false # Userland proxy for loopback traffic.
