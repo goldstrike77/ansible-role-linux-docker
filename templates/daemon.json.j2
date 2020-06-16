@@ -29,7 +29,7 @@
 {% if docker_registry_mirrors is defined %}
   "registry-mirrors": ["{{ docker_registry_mirrors | join('", "') }}"],
 {% endif %}
-  "metrics-addr": "0.0.0.0:{{ docker_port.metrics_port }}",
+  "metrics-addr": "{{ ansible_default_ipv4.address }}:{{ docker_port.metrics_port }}",
 {% if docker_dns is defined %}
   "dns": ["{{ docker_dns | join('", "') }}"],
 {% endif %}

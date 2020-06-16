@@ -46,6 +46,7 @@
     sysctl_set: 'yes'
     sysctl_file: '/etc/sysctl.d/20-sysctl.conf'
   loop: '{{ docker_kernel_parameters }}'
+  when: item.create | default(true) | bool
 
 - name: Configure proxy variables
   lineinfile:

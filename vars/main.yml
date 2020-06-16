@@ -1,6 +1,7 @@
 ---
 docker_kernel_parameters:
   - { variable: 'net.ipv4.ip_forward', value: '1' }
+  - { variable: 'net.ipv6.conf.all.forwarding',  value: '1', create: '{{ ansible_default_ipv6 | length > 0 }}' }
 
 docker_noproxy_address: # Reserved IP addresses
   - '10.0.0.0/8' # Private network
