@@ -26,11 +26,11 @@ __Table of Contents__
 - [Contributors](#Contributors)
 
 ## Overview
-Docker is a set of platform as a service product that uses OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries and configuration files, they can communicate with each other through well-defined channels. Docker enables developers to package applications into containers-standardized executable components that combine application source code with all the operating system (OS) libraries and dependencies required to run the code in any environment. While developers can create containers without Docker, Docker makes it easier, simpler, and safer to build, deploy, and manage containers. It’s essentially a toolkit that enables developers to build, deploy, run, update, and stop containers using simple commands and work-saving automation. This Ansible role installs Docker on linux operating system, including establishing a filesystem structure and server configuration with some common operational features.
+Docker is a set of platform as a service product that uses OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries and configuration files, they can communicate with each other through well-defined channels. Docker enables developers to package applications into containers-standardized executable components that combine application source code with all the operating system (OS) libraries and dependencies required to run the code in any environment. While developers can create containers without Docker, Docker makes it easier, simpler, and safer to build, deploy, and manage containers. It’s essentially a toolkit that enables developers to build, deploy, run, update, and stop containers using simple commands and work-saving automation.
 
 ## Requirements
 ### Operating systems
-This role will work on the following operating systems:
+This Ansible role installs Docker on the Linux operating system, including establishing a filesystem structure and server configuration with some common operational features, Will works on the following operating systems:
 
   * CentOS 7
 
