@@ -28,5 +28,5 @@
     disable_gpg_check: 'yes'
   register: soft_update
   until: soft_update is succeeded
-  retries: 3
-  delay: 5
+  retries: 5
+  delay: 2
