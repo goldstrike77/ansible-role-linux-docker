@@ -154,7 +154,7 @@ docker_port:
   metrics_port: '9323'
 docker_compose:
   install: true
-  version: '1.25.5'
+  version: '1.27.4'
   path: '/usr/local/bin/docker-compose'
 environments: 'Development'
 datacenter: 'dc01'

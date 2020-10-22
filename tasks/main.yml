@@ -93,4 +93,4 @@
   include: 'register.yml'
   when:
     - exporter_is_install | bool
-    -  consul_public_register | bool
+    - consul_public_register | bool
