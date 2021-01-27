@@ -74,10 +74,19 @@
   register: noproxy_update
   when: docker_proxy_server is not defined
 
+- name: Starting Docker service delayed
+  lineinfile:
+    state: 'present'
+    dest: '/lib/systemd/system/docker.service'
+    insertafter: '^\[Service\]'
+    regexp: '^ExecStartPre'
+    line: 'ExecStartPre=-/bin/sleep 60'
+  register: delayed_update
+
 - name: Reload the Docker service
   shell: echo ''
   notify: 'Reloading the Docker service'
-  when: conf_update is changed or soft_update is changed or proxy_update is changed or noproxy_update is changed
+  when: conf_update is changed or soft_update is changed or proxy_update is changed or noproxy_update is changed or delayed_update is changed
 
 - name: Docker maintenance task 
   include: 'maintenance.yml'
