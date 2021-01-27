@@ -5,6 +5,7 @@
   "bip": "{{ docker_bip | default('172.17.0.1/16') }}",
   "exec-opts": ["native.cgroupdriver={{ docker_native_cgroupdriver }}"],
   "data-root": "{{ docker_path }}/docker",
+  "group": "dockerroot",
   "max-concurrent-downloads": {{ docker_arg.max_concurrent_downloads | default('3') }},
   "max-concurrent-uploads": {{ docker_arg.max_concurrent_uploads | default('5') }},
   "icc": {{ docker_arg.icc | bool | to_json }},

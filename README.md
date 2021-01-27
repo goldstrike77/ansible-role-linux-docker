@@ -61,7 +61,6 @@ There are some variables in defaults/main.yml which can (Or needs to) be overrid
 * `syslog_protocol`: Syslog server protocol.
 * `syslog_server`: List of syslog server list.
 
-
 ##### Docker System Variables
 * `docker_arg.max_concurrent_downloads`: Set the max concurrent downloads for each pull.
 * `docker_arg.max_concurrent_uploads`: Set the max concurrent uploads for each push.
@@ -81,6 +80,7 @@ There are some variables in defaults/main.yml which can (Or needs to) be overrid
 * `environments`: Define the service environment.
 * `datacenter`: Define the DataCenter.
 * `domain`: Define the Domain.
+* `customer`: Define the customer name.
 * `tags`: Define the service custom label.
 * `exporter_is_install`: Whether to install prometheus exporter.
 * `consul_public_register`: Whether register a exporter service with public consul client.
@@ -156,9 +156,10 @@ docker_compose:
   install: true
   version: '1.27.4'
   path: '/usr/local/bin/docker-compose'
-environments: 'Development'
+environments: 'prd'
 datacenter: 'dc01'
 domain: 'local'
+customer: 'demo'
 tags:
   subscription: 'default'
   owner: 'nobody'
