@@ -10,11 +10,14 @@
 
 - name: Create docker image directory
   file:
-    path: '{{ docker_path }}/docker'
+    path: '{{ docker_path }}/{{ item }}'
     state: 'directory'
     owner: 'root'
     group: 'root'
     mode: '0711'
+  loop:
+    - 'containerd'
+    - 'docker'
 
 - name: Create docker config directory
   file:
@@ -77,10 +80,13 @@
 - name: Starting Docker service delayed
   lineinfile:
     state: 'present'
-    dest: '/lib/systemd/system/docker.service'
+    dest: '/lib/systemd/system/{{ item }}.service'
     insertafter: '^\[Service\]'
     regexp: '^ExecStartPre'
     line: 'ExecStartPre=-/bin/sleep 60'
+  loop:
+    - 'containerd'
+    - 'docker'
   register: delayed_update
 
 - name: Reload the Docker service
