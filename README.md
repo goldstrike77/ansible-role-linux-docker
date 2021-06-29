@@ -23,7 +23,7 @@ __Table of Contents__
   * [Combination of group vars and playbook](#combination-of-group-vars-and-playbook)
 - [License](#license)
 - [Author Information](#author-information)
-- [Contributors](#Contributors)
+- [Donations](#Donations)
 
 ## Overview
 Docker is a set of platform as a service product that uses OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries and configuration files, they can communicate with each other through well-defined channels. Docker enables developers to package applications into containers-standardized executable components that combine application source code with all the operating system (OS) libraries and dependencies required to run the code in any environment. While developers can create containers without Docker, Docker makes it easier, simpler, and safer to build, deploy, and manage containers. It’s essentially a toolkit that enables developers to build, deploy, run, update, and stop containers using simple commands and work-saving automation.
@@ -181,5 +181,7 @@ consul_public_clients:
 ## Author Information
 Please send your suggestions to make this role better.
 
-## Contributors
-Special thanks to the [Connext Information Technology](http://www.connext.com.cn) for their contributions to this role.
+## Donations
+Please donate to the following monero address.
+
+    46CHVMbb6wQV2PJYEbahb353SYGqXhcdFQVEWdCnHb6JaR5125h3kNQ6bcqLye5G7UF7qz6xL9qHLDSAY3baagfmLZABz75
