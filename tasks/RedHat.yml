@@ -18,6 +18,7 @@
     file: '{{ docker_repo_name }}'
     baseurl: '{{ docker_repo_url }}'
     gpgcheck: 'no'
+    sslverify: 'no'
     timeout: '60'
 
 - name: Install the Docker packages
