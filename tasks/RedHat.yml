@@ -1,6 +1,6 @@
 ---
 - name: Include OS-specific variables
-  include_vars: '{{ ansible_os_family }}.yml'
+  include_vars: '{{ ansible_distribution_file_variety }}.yml'
 
 - name: Ensure old versions of Docker are not installed
   package:

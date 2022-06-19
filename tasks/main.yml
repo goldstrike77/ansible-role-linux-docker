@@ -1,6 +1,6 @@
 ---
 - name: Include tasks for specific OS
-  include: '{{ ansible_os_family }}.yml'
+  include: '{{ ansible_distribution_file_variety }}.yml'
 
 - name: Include firewall tasks
   include: 'firewall.yml'
