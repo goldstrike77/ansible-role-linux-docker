@@ -6,4 +6,3 @@ docker_package:
   - 'docker-{{ docker_edition }}-{{ docker_version }}-3.el{{ ansible_distribution_major_version }}'
   - 'docker-{{ docker_edition }}-cli-{{ docker_version }}-3.el{{ ansible_distribution_major_version }}'
   - 'libselinux-utils'
-  - 'policycoreutils-python'
