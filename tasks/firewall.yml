@@ -10,7 +10,9 @@
     permanent: 'true'
     immediate: 'true'
     state: 'enabled'
-  with_items: '{{ docker_port.metrics_port }}'
+  loop:
+    - '{{ docker_port.docker_metrics }}'
+    - '{{ docker_port.containerd_metrics }}'
   when:
     - services_state.ansible_facts.services["firewalld.service"] is defined
     - services_state.ansible_facts.services["firewalld.service"].state == 'running'

@@ -75,7 +75,7 @@ There are some variables in defaults/main.yml which can (Or needs to) be overrid
 * `docker_arg.storage_opts`: Options per storage driver.
 
 ##### Listen port
-* `docker_port.metrics_port`: Prometheus exporter port
+* `docker_port`: Prometheus exporter port.
 
 ##### Service Mesh
 * `environments`: Define the service environment.
@@ -152,7 +152,8 @@ docker_arg:
   storage_opts:
     overlay2_override_kernel_check: true
 docker_port:
-  metrics_port: '9323'
+  docker_metrics: '9323'
+  containerd_metrics: '1338'
 docker_compose:
   install: true
   version: '1.27.4'

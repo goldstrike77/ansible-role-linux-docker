@@ -30,7 +30,7 @@ version = 2
   uid = 0
 
 [metrics]
-  address = ""
+  address = "{{ ansible_default_ipv4.address }}:{{ docker_port.containerd_metrics }}"
   grpc_histogram = false
 
 [plugins]

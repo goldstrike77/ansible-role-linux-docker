@@ -23,9 +23,12 @@
 
 - name: Allow docker to listen on service port
   seport:
-    ports: '{{ docker_port.metrics_port }}'
+    ports: '{{ item }}'
     proto: 'tcp'
     setype: 'http_port_t'
     state: 'present'
+  loop:
+    - '{{ docker_port.docker_metrics }}'
+    - '{{ docker_port.containerd_metrics }}'
   when:
     - docker_selinux | bool
